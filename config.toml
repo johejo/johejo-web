@@ -1,0 +1,4 @@
+baseURL = "http://www.johejo.com/"
+languageCode = "en-us"
+title = "johejo.com"
+theme = "mainroad"
