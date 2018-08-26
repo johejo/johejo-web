@@ -32,7 +32,7 @@ jobs:
           at: /tmp/johejo-web
       - run:
           name: Deploy to Azure Blob
-          command: az storage blob upload-batch -d \$web -s ./public/
+          command: az storage blob upload-batch --account-name ${AZURE_STORAGE_ACCOUNT} --account-key ${AZURE_STORAGE_ACCOUNT_KEY} -d \$web -s ./public/
 
 workflows:
   version: 2
