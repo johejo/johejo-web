@@ -5,7 +5,7 @@ jobs:
       - image: alpine:latest
       - image: microsoft/azure-cli
     
-    working_directory: ~/johejo-web
+    working_directory: /tmp/johejo-web
 
     steps:
       - checkout
@@ -18,20 +18,18 @@ jobs:
             curl -sL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz | tar zx
       - run:
           name: Build sites
-          command: |
-            ./hugo
-            mkdir -p /tmp/artifacts
-            cp -r ./public /tmp/artifacts
-
-      - store_artifacts:
-          path: /tmp/artifacts
-          destination: build
+          command: ./hugo
+      - persist_to_workspase:
+          root: /tmp/johejo-web
+          path: public/
 
   deploy:
     docker:
       - image: microsoft/azure-cli
     working_directory: /tmp/johejo-web
     steps:
+      - attach_workspace:
+          at: /tmp/johejo-web
       - run:
           name: Deploy to Azure Blob
           command: az storage blob upload-batch -d \$web -s ./public/
