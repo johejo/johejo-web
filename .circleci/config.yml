@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: alpine:latest
+      - image: microsoft/azure-cli
     
     working_directory: ~/johejo-web
 
@@ -17,7 +18,14 @@ jobs:
             curl -sL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz | tar zx
       - run:
           name: Build sites
-          command: ./hugo
+          command: |
+            ./hugo
+            mkdir -p /tmp/artifacts
+            cp -r ./public /tmp/artifacts
+
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: build
 
   deploy:
     docker:
