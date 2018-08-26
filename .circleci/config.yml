@@ -19,9 +19,9 @@ jobs:
       - run:
           name: Build sites
           command: ./hugo
-      - persist_to_workspase:
+      - persist_to_workspace:
           root: /tmp/johejo-web
-          path: public/
+          paths: public/
 
   deploy:
     docker:
