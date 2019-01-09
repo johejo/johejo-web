@@ -2,3 +2,12 @@ baseURL = "http://www.johejo.com/"
 languageCode = "en-us"
 title = "johejo.com"
 theme = "mainroad"
+
+[Params.sidebar]
+  home = "right"
+  list = "right"
+  single = "right"
+  widgets = ["search", "recent", "categories", "taglist"]
+
+[Params.widgets]
+  recent_num = 5
