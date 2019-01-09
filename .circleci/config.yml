@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: alpine:latest
       - image: microsoft/azure-cli
-    
+
     working_directory: /tmp/johejo-web
 
     steps:
@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Install Hugo
           environment:
-            HUGO_VERSION: 0.47.1
+            HUGO_VERSION: 0.53
           command: |
             apk add --no-cache curl tar
             curl -sL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz | tar zx
