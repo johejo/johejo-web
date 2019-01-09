@@ -1,0 +1,13 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- script: |
+    HUGO_VERSION=0.53
+    curl -sL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz | tar zx
+    ./hugo
+
+  displayName: 'Generate static contents'
